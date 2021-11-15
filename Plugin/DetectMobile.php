@@ -8,21 +8,10 @@ use Magento\Framework\App\Http\Context;
 
 class DetectMobile
 {
-    protected $mobileAgent;
-    protected $httpHeader;
 
     const USER_AGENT_CONTEXT_VARIABLE = 'USER_AGENT_CONTEXT_VARIABLE';
 
     const DEFAULT_VALUE = 'desktop';
-
-
-    public function __construct(
-        \Zend_Http_UserAgent_Mobile $mobileAgent,
-        \Magento\Framework\HTTP\Header $httpHeader
-    ) {
-        $this->httpHeader = $httpHeader;
-        $this->mobileAgent = $mobileAgent;
-    }
 
     private function isMobile(){
         $regex_match = "/iPhone|iPod|BlackBerry|Palm|Googlebot-Mobile|Mobile|mobile|mobi|Windows Mobile|Safari Mobile|Android|Opera Mini/i";
@@ -54,9 +43,10 @@ class DetectMobile
         }
 
         $subject->setValue(
-            self::USER_AGENT_CONTEXT_VARIABLE,
-            $browserStatus,
-            self::DEFAULT_VALUE
+            self::USER_AGENT_CONTEXT_VARIABLE, $browserStatus, self::DEFAULT_VALUE
         );
+
+//        $defaultAgeContext = 0;
+//        $subject->setValue('CONTEXT_AGE', 1, $defaultAgeContext);
     }
 }

@@ -1,0 +1,12 @@
+<?php
+/**
+ * @var \Magento\Framework\View\Element\Template $block
+ */
+?>
+<script>
+    require([
+        "jquery"
+    ], function($){
+        $.post("<?php echo $block->getUrl('tenxvcookie/action/donothing', ['_secure' => $block->getRequest()->isSecure()]) ?>", function(data) {});
+    });
+</script>
