@@ -36,17 +36,17 @@ class DetectMobile
     {
 
         if($this->isMobile()) {
-            $browserStatus = 'mobile';
+            $subject->setValue(
+                self::USER_AGENT_CONTEXT_VARIABLE, "mobile", self::DEFAULT_VALUE
+            );
         }
         else{
-            $browserStatus = self::DEFAULT_VALUE;
+            $subject->setValue(
+                self::USER_AGENT_CONTEXT_VARIABLE, "pc", self::DEFAULT_VALUE
+            );
         }
 
-        $subject->setValue(
-            self::USER_AGENT_CONTEXT_VARIABLE, $browserStatus, self::DEFAULT_VALUE
-        );
+        return [];
 
-//        $defaultAgeContext = 0;
-//        $subject->setValue('CONTEXT_AGE', 1, $defaultAgeContext);
     }
 }
